@@ -1,0 +1,59 @@
+<div class="container" *ngIf="!!form">
+    <div class="row">
+        <h2> {{isEdit ? 'Edit User' : 'Create User'}} </h2>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-block btn-warning" (click)="back()">Back</button>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <input type="hidden" *ngIf="isEdit" class="form-control" formControlName="id" id="id">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="userId">User ID</label>
+                    <input type="text" [ngClass]="{'is-invalid': !form.controls['userId'].valid && form.controls['userId'].touched}" class="form-control"
+                        id="userId" formControlName="userId" placeholder="User ID">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="userName">User Name</label>
+                    <input type="text" [ngClass]="{'is-invalid': !form.controls['userName'].valid && form.controls['userName'].touched}" class="form-control"
+                        id="userName" formControlName="userName" placeholder="User Name">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="birthDate">Birth Date</label>
+                    <input type="date" [ngClass]="{'is-invalid': !form.controls['birthDate'].valid && form.controls['birthDate'].touched}"
+                        class="form-control" id="birthDate" formControlName="birthDate" placeholder="Birth Date">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="phone">Phone</label>
+                    <input type="text" [ngClass]="{'is-invalid': !form.controls['phone'].valid && form.controls['phone'].touched}" class="form-control"
+                        id="phone" formControlName="phone" placeholder="Phone">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="email">Email</label>
+                    <input type="text" [ngClass]="{'is-invalid': !form.controls['email'].valid && form.controls['email'].touched}" class="form-control"
+                        id="email" formControlName="email" placeholder="Email">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="gender">Gender</label>
+                    <select class="form-control custom-select" formControlName="gender" placeholder="Gender">
+                        <option value=""></option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-block btn-success" [disabled]="!form?.valid"> {{isEdit
+                        ? 'Save' : 'Create'}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
